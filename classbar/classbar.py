@@ -6,6 +6,7 @@ except ImportError:
 import os
 import time as t
 import datetime
+import json
 
 # Courses definition file
 COURSES_CONFIG_PATH = os.path.expanduser("~/.config/classbar/courses.yml")
@@ -132,7 +133,9 @@ while True:
     status = input()
 
     # If the first chr is a comma, strip it
+    has_comma = False
     if status[0] == ",":
+        has_comma = True
         status = status[1:]
 
     # Do some bad things, and convert to a list
@@ -146,4 +149,4 @@ while True:
     }
 
     # Print the output
-    print([coursedata] + status_data)
+    print(("," if has_comma else "" ) +json.dumps([coursedata] + status_data))
