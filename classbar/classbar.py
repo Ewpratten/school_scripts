@@ -61,7 +61,7 @@ def getStr():
         _next = datetime.datetime(year=2000, month=1, day=1, hour=nhr, minute=nm)
         dt:datetime.timedelta = (_next - now)
 
-        t_str = f"in {int(dt.seconds / 3600)}:{int(dt.seconds / 60)}h"
+        t_str = f"in {int(dt.seconds / 3600)}:{int(dt.seconds / 60)%60}h"
 
         # Calculate roomstr
         room = next_course.get("room", "")
@@ -87,7 +87,7 @@ def getStr():
         dt:datetime.timedelta = (_next - now)
 
         if int(dt.seconds / 3600) > 0:
-            t_str = f"in {int(dt.seconds / 3600)}:{int(dt.seconds / 60)}h"
+            t_str = f"in {int(dt.seconds / 3600)}:{int(dt.seconds / 60)%60}h"
         else:
             t_str = f"in {int(dt.seconds / 60)}m"
 
@@ -105,7 +105,7 @@ def getStr():
     elif current_course != None and next_course == None:
 
         # Calculate timestr (we have to do some string magic to get time data back from ints)
-        nhr = int(current_course["end"]  / 100)
+        nhr = int(current_course["end"]  / 100)C
         nm = int(str(current_course["end"])[-2:])
         _chr = int(time / 100)
         cm = int(str(time)[-2:])
@@ -116,7 +116,7 @@ def getStr():
         dt:datetime.timedelta = (_next - now)
 
         if int(dt.seconds / 3600) > 0:
-            t_str = f"in {int(dt.seconds / 3600)}:{int(dt.seconds / 60)}h"
+            t_str = f"in {int(dt.seconds / 3600)}:{int(dt.seconds / 60)%60}h"
         else:
             t_str = f"in {int(dt.seconds / 60)}m"
 
